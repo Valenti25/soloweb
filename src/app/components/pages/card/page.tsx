@@ -113,6 +113,8 @@ function ManagePanel({
   const [back, setBack] = useState("");
   const [tag, setTag] = useState("");
   const [edit, setEdit] = useState<Flashcard | null>(null);
+
+  // FIX: attach ref to the actual Input so FAB.focus() works
   const frontRef = useRef<HTMLInputElement | null>(null);
 
   const canAdd = front.trim().length > 0 && back.trim().length > 0;
@@ -140,6 +142,7 @@ function ManagePanel({
   const onDelete = (id: string) => {
     setCards((prev) => prev.filter((c) => c.id !== id));
   };
+
   const onSaveEdit = () => {
     if (!edit) return;
     setCards((prev) =>
@@ -196,6 +199,7 @@ function ManagePanel({
         <Divider />
         <CardBody className="grid gap-4 p-5 sm:p-6">
           <Input
+            ref={frontRef} // FIX: attach ref
             placeholder="พิมพ์คำถามที่ต้องการทบทวน..."
             value={front}
             onChange={(e) => setFront(e.target.value)}
@@ -345,7 +349,8 @@ function ManagePanel({
       {/* Edit modal */}
       <Modal isOpen={!!edit} onClose={() => setEdit(null)} size="lg" backdrop="blur">
         <ModalContent className="bg-white">
-          {() => (
+          {/* FIX: provide (onClose) parameter */}
+          {(onClose) => (
             <>
               <ModalHeader className="flex items-center gap-3 border-b border-gray-200">
                 <div className="flex h-9 w-9 items-center justify-center rounded bg-black text-white">
@@ -391,7 +396,7 @@ function ManagePanel({
               </ModalBody>
 
               <ModalFooter>
-                <Button variant="flat" onClick={() => setEdit(null)}>
+                <Button variant="flat" onClick={onClose}>
                   ยกเลิก
                 </Button>
                 <Button
@@ -510,7 +515,8 @@ function StudyPanel({ cards }: { cards: Flashcard[] }) {
           value={progress}
           className="h-2"
           classNames={{
-            base: "bg-gray-200 rounded-full overflow-hidden",
+            // FIX: prefer track/indicator for styling safety
+            track: "bg-gray-200 rounded-full overflow-hidden",
             indicator: "bg-black",
           }}
         />
