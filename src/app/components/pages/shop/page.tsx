@@ -14,6 +14,7 @@ import {
   Sparkles,
 } from "lucide-react";
 import Image from "next/image";
+
 /* ===================== Data ===================== */
 
 type Pack = {
@@ -101,8 +102,8 @@ const fmtTHB = (n: number) =>
   });
 
 const discount = (price?: number, oldPrice?: number) =>
-  oldPrice && oldPrice > price!
-    ? Math.round(((oldPrice - price!) / oldPrice) * 100)
+  oldPrice && oldPrice > (price ?? 0)
+    ? Math.round(((oldPrice - (price ?? 0)) / oldPrice) * 100)
     : 0;
 
 /* ===================== Card UI ===================== */
@@ -142,7 +143,12 @@ function PackCard(p: Pack) {
           <Image
             src={p.image.src}
             alt={p.image.alt}
+            /** ✅ แก้ error: ใส่ขนาดให้ Next/Image */
+            width={80}
+            height={80}
+            sizes="80px"
             className="h-20 w-20 shrink-0 rounded-2xl object-contain"
+            priority
           />
         )}
         <div className="min-w-0">
@@ -309,11 +315,9 @@ export default function FlashcardStoreStackNoLib() {
   return (
     <section className="mx-auto mt-16 max-w-5xl px-4 py-12 text-white">
       <div className="mb-8 text-center">
-        <h2 className="text-2xl font-bold md:text-3xl">
-          การซื้อขายประสบการณ์
-        </h2>
+        <h2 className="text-2xl font-bold md:text-3xl">การซื้อขายประสบการณ์</h2>
         <p className="mt-2 text-sm text-zinc-400">
-         เป็นการขายแฟรชการ์ดความรู้ละประสบการณ์ของคนที่เคยสอบมาก่อน
+          เป็นการขายแฟรชการ์ดความรู้ละประสบการณ์ของคนที่เคยสอบมาก่อน
         </p>
       </div>
 
@@ -345,7 +349,6 @@ export default function FlashcardStoreStackNoLib() {
           transform-origin: top center;
           backface-visibility: hidden;
         }
-          
       `}</style>
     </section>
   );

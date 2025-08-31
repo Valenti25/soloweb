@@ -747,20 +747,3 @@ export default function FlashcardCRUD({
     </div>
   );
 }
-
-// ---------------- Example usage ----------------
-export default function FlashcardCRUDExample() {
-  return (
-    <FlashcardCRUD
-      deckId="tgat-demo"
-      initialCards={[
-        {
-          front: "TGAT คืออะไร?",
-          back: "แบบทดสอบความถนัดทั่วไปในการเข้ามหาวิทยาลัย",
-          tag: "TGAT",
-        },
-        { front: "cos(0) เท่ากับ?", back: "1", tag: "คณิตศาสตร์" },
-      ]}
-    />
-  );
-}
