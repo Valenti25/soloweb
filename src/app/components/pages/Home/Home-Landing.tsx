@@ -53,10 +53,6 @@ export default function LandingPage() {
           {landingContent.heading.smallTitle}
         </p>
         <h2 className="text-xl lg:text-[40px]">{landingContent.heading.mainTitle}</h2>
-        <div className="mx-auto mt-4 max-w-4xl text-xs text-[#7E7E7E] lg:px-2 lg:text-xl">
-          <p>{landingContent.heading.description1}</p>
-          <p>{landingContent.heading.description2}</p>
-        </div>
       </div>
 
       {/* Cards */}

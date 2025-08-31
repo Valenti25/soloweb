@@ -140,9 +140,6 @@ function ManagePanel({
   const onDelete = (id: string) => {
     setCards((prev) => prev.filter((c) => c.id !== id));
   };
-
-  const onOpenEdit = (item: Flashcard) => setEdit(item);
-
   const onSaveEdit = () => {
     if (!edit) return;
     setCards((prev) =>
@@ -660,7 +657,7 @@ function StudyPanel({ cards }: { cards: Flashcard[] }) {
             <div className="mb-2 text-base font-semibold text-black">
               ยังไม่มีการ์ดสำหรับทบทวน
             </div>
-            <p className="text-gray-600">ไปที่แท็บ "จัดการการ์ด" เพื่อเพิ่มการ์ดใหม่</p>
+            <p className="text-gray-600">ไปที่แท็บ จัดการการ์ด เพื่อเพิ่มการ์ดใหม่</p>
           </CardBody>
         </Card>
       )}
