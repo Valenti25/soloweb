@@ -749,7 +749,7 @@ export default function FlashcardCRUD({
 }
 
 // ---------------- Example usage ----------------
-export function FlashcardCRUDExample() {
+export default function FlashcardCRUDExample() {
   return (
     <FlashcardCRUD
       deckId="tgat-demo"
