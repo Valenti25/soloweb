@@ -13,7 +13,7 @@ import {
   Crown,
   Sparkles,
 } from "lucide-react";
-
+import Image from "next/image";
 /* ===================== Data ===================== */
 
 type Pack = {
@@ -139,7 +139,7 @@ function PackCard(p: Pack) {
       {/* Header */}
       <div className="flex flex-col gap-5 sm:flex-row sm:items-start">
         {p.image?.src && (
-          <img
+          <Image
             src={p.image.src}
             alt={p.image.alt}
             className="h-20 w-20 shrink-0 rounded-2xl object-contain"
